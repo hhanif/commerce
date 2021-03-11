@@ -6,6 +6,17 @@ import { FC, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
+import React from 'react'
+import {
+  createInstance,
+  OptimizelyProvider,
+  OptimizelyFeature,
+  withOptimizely,
+} from '@optimizely/react-sdk'
+
+const optimizely = createInstance({
+  sdkKey: 'JV1Nvp5158nZicxEyEncZ',
+})
 
 const Noop: FC = ({ children }) => <>{children}</>
 
@@ -18,6 +29,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <OptimizelyProvider
+        optimizely={optimizely}
+        user={{
+          id: 'user123',
+        }}
+      >
+        <OptimizelyFeature feature="discount">
+          {(enabled) => (enabled ? 'Feature is ON!' : 'Feature is off.')}
+        </OptimizelyFeature>
+      </OptimizelyProvider>
       <Head />
       <ManagedUIContext>
         <Layout pageProps={pageProps}>

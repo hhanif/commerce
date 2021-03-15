@@ -37,7 +37,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       >
         <OptimizelyFeature feature="discount">
           {(enabled) =>
-            enabled ? 'Here is a 20% off code: 20OFF' : 'Feature is off.'
+            enabled
+              ? 'Here is a 20% off code: 20OFF'
+              : 'Here is a $15 off code: 15OFF'
           }
         </OptimizelyFeature>
       </OptimizelyProvider>

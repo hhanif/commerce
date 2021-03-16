@@ -16,6 +16,11 @@ import {
 
 const optimizely = createInstance({
   sdkKey: 'JV1Nvp5158nZicxEyEncZ',
+  datafileOptions: {
+    updateInterval: 1000,
+    autoUpdate: true,
+    urlTemplate: 'https://cdn.optimizely.com/onboarding/%s.json',
+  },
 })
 
 const Noop: FC = ({ children }) => <>{children}</>
@@ -40,7 +45,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             isEnabled ? (
               <pre>{`[DEBUG: Feature ON] Here is a 20% off code: 20OFF`} </pre>
             ) : (
-              <pre>{`[DEBUG: Feature OFF] ${variables.message} `}</pre>
+              <pre>{`[DEBUG: Feature OFF] Welcome to the site! `}</pre>
             )
           }
         </OptimizelyFeature>

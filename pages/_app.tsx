@@ -40,8 +40,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           id: 'user123',
         }}
       >
-        <OptimizelyFeature autoUpdate={true} feature="discount">
-          {(enabled) => (enabled ? 'Here is $15 off!' : 'Welcome to the site!')}
+        <OptimizelyFeature feature="discount">
+          {(enabled) =>
+            enabled ? 'Here is a 20% off code: 20OFF' : 'Welcome to the site!'
+          }
         </OptimizelyFeature>
       </OptimizelyProvider>
       <Head />

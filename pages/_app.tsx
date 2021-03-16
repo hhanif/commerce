@@ -35,9 +35,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           id: 'user123',
         }}
       >
-        <OptimizelyFeature feature="discount">
-          {(enabled) =>
-            enabled ? 'Here is a 20% off code: 20OFF' : 'Welcome to the site!'
+        <OptimizelyFeature autoUpdate={true} feature="discount">
+          {(isEnabled) =>
+            isEnabled ? (
+              <pre>{`[DEBUG: Feature ON] Here is a 20% off code: 20OFF`} </pre>
+            ) : (
+              <pre>{`[DEBUG: Feature OFF] Welcome to the site!`}</pre>
+            )
           }
         </OptimizelyFeature>
       </OptimizelyProvider>
